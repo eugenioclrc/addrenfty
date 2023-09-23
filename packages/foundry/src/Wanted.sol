@@ -45,11 +45,11 @@ contract Wanted {
 
         // @todo probably using a mask would be better and cheaper, for now lets keep it simple
         bytes20 byteAddr = bytes20(address(uint160(nftId)));
-        for (uint i; i < bounty.leadingBytes.length; i++) {
+        for (uint256 i; i < bounty.leadingBytes.length; i++) {
             if (bounty.leadingBytes[i] != byteAddr[i]) {
                 revert("INVALID_NOT_WANTED");
             }
-        }  
+        }
 
         /// @dev this will be useful to avoid reentrancy
         bounty.isClaimed = true;
