@@ -1,0 +1,37 @@
+{
+  "private": true,
+  "name": "addrenfty",
+  "workspaces": {"packages":[
+    "packages/sveltekit",
+    "packages/contracts"
+  ]},
+  "version": "1.0.0",
+  "scripts": {
+    "account": "yarn workspace @addrenfty/foundry account",
+    "chain": "yarn workspace @addrenfty/foundry chain",
+    "fork": "yarn workspace @addrenfty/foundry fork",
+    "deploy": "yarn workspace @addrenfty/foundry deploy",
+    "verify": "yarn workspace @addrenfty/foundry verify",
+    "compile": "yarn workspace @addrenfty/foundry compile",
+    "generate": "yarn workspace @addrenfty/foundry generate",
+    "foundry:lint": "yarn workspace @addrenfty/foundry lint",
+    "foundry:lint-staged": "yarn workspace @addrenfty/foundry lint-staged",
+    "foundry:test": "yarn workspace @addrenfty/foundry test",
+    "test": "yarn foundry:test",
+    "start": "yarn workspace @addrenfty/sveltekit dev",
+    "next:lint": "yarn workspace @addrenfty/sveltekit lint",
+    "next:format": "yarn workspace @addrenfty/sveltekit format",
+    "next:check-types": "yarn workspace @addrenfty/sveltekit check-types",
+    "postinstall": "husky install",
+    "precommit": "lint-staged",
+    "vercel": "yarn workspace @addrenfty/sveltekit vercel",
+    "vercel:yolo": "yarn workspace @addrenfty/sveltekit vercel:yolo"
+  },
+  "packageManager": "yarn@3.2.3",
+  "repository": "git@github.com:eugenioclrc/addrenfty.git",
+  "author": "eugenioclrc <eugenioclrc@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^8.0.3"
+  }
+}
