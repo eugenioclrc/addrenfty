@@ -4,6 +4,8 @@ pragma solidity ^0.8.13;
 import {Test, console2} from "forge-std/Test.sol";
 import {Addrenfty} from "../src/Addrenfty.sol";
 
+import {Strings} from "openzeppelin/utils/Strings.sol";
+
 contract AddrenftyTest is Test {
     Addrenfty public addrenfty;
 
@@ -53,7 +55,17 @@ contract AddrenftyTest is Test {
         vm.prank(minter);
         uint256 minted = addrenfty.mint(minterSalt);
 
-
         assertEq(address(uint160(minted)), predictedAddress);
     }
+
+    function test_render() public {
+        address minter = makeAddr("minter");
+        
+        vm.prank(minter);
+        uint256 mintedByMinter = addrenfty.mint(bytes32("c0ffee"));
+
+        console2.log(addrenfty.tokenURI(mintedByMinter));
+        console2.log(Strings.toHexString(mintedByMinter));
+    }
+
 }
