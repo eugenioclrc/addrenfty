@@ -1,0 +1,11 @@
+{
+  "goerli": {
+    "Addrenfty": {
+      "address": "0x19FB80CFC5ee42dEafAa4C2FA5BeB5ca91bB6e16",
+      "startBlock": 9747790
+    },
+    "Wanted": {
+      "address": "0x1bDf03E0fF5EcC3628Ba54A1630352E7F6067BA8"
+    }
+  }
+}
