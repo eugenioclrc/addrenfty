@@ -6,6 +6,16 @@ import {CREATE3} from "solmate/utils/CREATE3.sol";
 import {Strings} from "openzeppelin/utils/Strings.sol";
 import {Base64} from "openzeppelin/utils/Base64.sol";
 
+/*
+                                                                                           
+  Welcome to AddreNFTy's Source Code!
+  
+  Where vanity meets functionality in the realm of Ethereum contracts.
+  
+  Dive deep, and discover how we're rewriting the rules of contract address generation.
+  
+  Developed during ETHNewYork 2023 by 0x4non, rotcivegaf and Fi-fi.
+*/
 contract Addrenfty is ERC721("AddreNFTy", "ADNFT") {
     using Strings for uint256;
 
@@ -49,7 +59,21 @@ contract Addrenfty is ERC721("AddreNFTy", "ADNFT") {
 
     function tokenURI(uint256 id) public view override returns (string memory) {
         require(_saltOf[id] != 0, "NOT_MINTED");
-        return string.concat("data:image/svg+xml;base64,", Base64.encode(bytes(renderSvg(id))));
+
+        string memory image = string.concat("data:image/svg+xml;base64,", Base64.encode(bytes(renderSvg(id))));
+
+        return string.concat(
+            "data:application/json;base64,",
+            Base64.encode(
+                bytes(
+                string.concat('{"description": "A unique AddreNFTy token representing a smart contract address. Unlock the future of vanity contract addresses with this NFT.",',
+            '"image": "',
+            image,
+            '",',
+            '"name": "',
+            Strings.toHexString(address(uint160(id))),
+            '"}')))
+        );
     }
 
     function renderSvg(uint256 id) public view returns (string memory) {
