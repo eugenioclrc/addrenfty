@@ -17,6 +17,9 @@ contract Wanted {
         bytes leadingBytes;
     }
 
+    event BountyCreated(uint256 bountyId, address owner, uint256 amount, bytes leadingBytes);
+    event BountyClaimed(uint256 bountyId, address claimer, uint256 amount);
+
     constructor(Addrenfty _addrenfty) {
         addrenfty = _addrenfty;
     }
@@ -34,7 +37,10 @@ contract Wanted {
             leadingBytes: leadingBytes
         });
 
+        emit BountyCreated(bountiesCreated, msg.sender, msg.value, leadingBytes);
+
         bountiesCreated++;
+
     }
 
     function claimBounty(uint256 bountyId, uint256 nftId) external {
@@ -57,5 +63,7 @@ contract Wanted {
 
         payable(msg.sender).transfer(bounty.amount);
         addrenfty.transferFrom(msg.sender, bounty.owner, nftId);
+
+        emit BountyClaimed(bountyId, msg.sender, bounty.amount);
     }
 }
